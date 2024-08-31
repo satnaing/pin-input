@@ -1,35 +1,24 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { IconGitFork, IconStar } from "@tabler/icons-react";
+import { Button } from "./components/ui/button";
+import ThemeSwitch from "./components/theme-switch";
 
-function App() {
-  const [count, setCount] = useState(0)
-
+export default function App() {
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
+    <main className="max-w-3xl mx-auto pt-20">
+      <div className="space-y-1">
+        <h1 className="font-bold text-2xl text-center">Pin Input</h1>
+        <p className="text-muted-foreground text-center text-lg leading-tight">
+          A modular, style-agnostic PinInput component, ready to use <br /> with
+          just a copy-paste—no extra libraries needed.
         </p>
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+      <div className="space-x-4 mt-4 text-center">
+        <Button variant="outline" leftSection={<IconGitFork size={20} />}>
+          Fork
+        </Button>
+        <Button leftSection={<IconStar size={18} />}>GitHub</Button>
+        <ThemeSwitch />
+      </div>
+    </main>
+  );
 }
-
-export default App
