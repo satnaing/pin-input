@@ -1,4 +1,4 @@
-import * as React from "react";
+const pinInputShadcn = `import * as React from "react";
 import { cn } from "@/lib/utils";
 
 interface PinInputProps {
@@ -10,11 +10,11 @@ interface PinInputProps {
    */
   className?: string;
   /**
-   * `aria-label` for the input fields
+   * \`aria-label\` for the input fields
    */
   ariaLabel?: string;
   /**
-   * If set, the pin input receives focus on mount, `false` by default
+   * If set, the pin input receives focus on mount, \`false\` by default
    */
   autoFocus?: boolean;
   /**
@@ -30,20 +30,20 @@ interface PinInputProps {
    */
   onIncomplete?: (value: string) => void;
   /**
-   * `name` attribute for input fields
+   * \`name\` attribute for input fields
    */
   name?: string;
   /**
-   * `form` attribute for hidden input
+   * \`form\` attribute for hidden input
    */
   form?: string;
   /**
-   * If set, the input's value will be masked just like password input. This field is `false` by default
+   * If set, the input's value will be masked just like password input. This field is \`false\` by default
    */
   mask?: boolean;
   /**
    * If set, the pin input component signals to its fields that they should
-   * use `autocomplete="one-time-code"`. This field is `false` by default
+   * use \`autocomplete="one-time-code"\`. This field is \`false\` by default
    */
   otp?: boolean;
   /**
@@ -55,19 +55,19 @@ interface PinInputProps {
    */
   value?: string;
   /**
-   * The type of value pin input should allow, `alphanumeric` by default
+   * The type of value pin input should allow, \`alphanumeric\` by default
    */
   type?: "numeric" | "alphanumeric";
   /**
-   * Placeholder for input fields, `○` by default
+   * Placeholder for input fields, \`○\` by default
    */
   placeholder?: string;
   /**
-   * If set, the user cannot set the value, `false` by default
+   * If set, the user cannot set the value, \`false\` by default
    */
   readOnly?: boolean;
   /**
-   * If set, the input fields are disabled, `false` by default
+   * If set, the input fields are disabled, \`false\` by default
    */
   disabled?: boolean;
 }
@@ -111,8 +111,8 @@ const PinInput = React.forwardRef<HTMLDivElement, PinInputProps>(
 
     /* call onChange func if pinValue changes */
     React.useEffect(() => {
-      if (!onChange) return;
-      onChange(pinValue);
+      if (!onChange) return
+      onChange(pinValue)
     }, [onChange, pinValue]);
 
     /* call onComplete func if pinValue is valid and completed */
@@ -142,7 +142,7 @@ const PinInput = React.forwardRef<HTMLDivElement, PinInputProps>(
         counter = counter + 1;
         return React.cloneElement(child, {
           name,
-          inputKey: `input-${pinIndex}`,
+          inputKey: \`input-\${pinIndex}\`,
           value: length > pinIndex ? pins[pinIndex] : "",
           onChange: (e: React.ChangeEvent<HTMLInputElement>) =>
             handlers.handleChange(e, pinIndex),
@@ -161,7 +161,7 @@ const PinInput = React.forwardRef<HTMLDivElement, PinInputProps>(
           readOnly: readOnly,
           "aria-label": ariaLabel
             ? ariaLabel
-            : `Pin input ${counter} of ${length}`,
+            : \`Pin input \${counter} of \${length}\`,
           ref: (node: HTMLInputElement | null) => {
             if (node) {
               refMap?.set(pinIndex, node);
@@ -221,7 +221,7 @@ const PinInputFieldNoRef = <T extends React.ElementType = "input">(
   const isInsidePinInput = React.useContext(PinInputContext);
   if (!isInsidePinInput) {
     throw new Error(
-      `PinInputField must be used within ${PinInput.displayName}.`
+      \`PinInputField must be used within \${PinInput.displayName}.\`
     );
   }
 
@@ -379,7 +379,7 @@ const usePinInput = ({
     event.preventDefault();
     const copyValue = event.clipboardData
       .getData("text/plain")
-      .replace(/[\n\r\s]+/g, "");
+      .replace(/[\\n\\r\\s]+/g, '')
     const copyArr = copyValue.split("").slice(0, length);
 
     const isValid = copyArr.every((c) => validate(c));
@@ -454,7 +454,7 @@ const getValidChildren = (children: React.ReactNode) =>
     if (React.isValidElement(child)) {
       return React.isValidElement(child);
     }
-    throw new Error(`${PinInput.displayName} contains invalid children.`);
+    throw new Error(\`\${PinInput.displayName} contains invalid children.\`);
   }) as React.ReactElement[];
 
 const getInputFieldCount = (children: React.ReactNode) =>
@@ -464,4 +464,6 @@ const getInputFieldCount = (children: React.ReactNode) =>
     }
   }).length;
 
-export { PinInput, PinInputField };
+export { PinInput, PinInputField };`;
+
+export { pinInputShadcn };

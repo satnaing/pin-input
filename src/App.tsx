@@ -1,24 +1,12 @@
-import {
-  IconCaretDown,
-  IconCheck,
-  IconCopy,
-  IconGitFork,
-  IconStar,
-} from "@tabler/icons-react";
-import { Button } from "./components/ui/button";
-import ThemeSwitch from "./components/theme-switch";
-import {
-  Collapsible,
-  CollapsibleContent,
-  CollapsibleTrigger,
-} from "@/components/ui/collapsible";
-import { pinInputCodes } from "./assets/pin-input-codes";
-import { cn } from "./lib/utils";
-import useCopy from "./hooks/use-copy";
-import { PinInputForm } from "./components/pin-input-form";
+import { IconGitFork, IconStar } from "@tabler/icons-react";
+import { pinInputShadcn, pinInputRaw } from "@/assets/snippets";
+import { Button } from "@/components/ui/button";
+import { Accordion } from "@/components/ui/accordion";
+import ThemeSwitch from "@/components/theme-switch";
+import { PinInputForm } from "@/components/pin-input-form";
+import SnippetAccordionItem from "@/components/snippet-accordion-item";
 
 export default function App() {
-  const [copied, setCopied] = useCopy();
   return (
     <main className="max-w-3xl mx-auto pt-20 pb-20">
       <div className="space-y-1">
@@ -82,56 +70,23 @@ export default function App() {
 
         {/* Snippets */}
         <div className="bg-card p-4 rounded-md shadow-sm col-span-12 row-span-2">
-          <h2 className="font-medium text-lg mb-2">Snippets</h2>
-          <Collapsible defaultOpen>
-            <CollapsibleTrigger asChild>
-              <Button
-                variant="outline"
-                className="w-full justify-between mb-2 group"
-              >
-                <span>pin-input.tsx</span>
-                <IconCaretDown
-                  className={cn(
-                    "h-4 w-4 transition-transform duration-200 group-data-[state=open]:rotate-180"
-                  )}
-                />
-              </Button>
-            </CollapsibleTrigger>
-            <CollapsibleContent>
-              <div className="relative">
-                <Button
-                  variant="secondary"
-                  size="icon"
-                  className="absolute top-3 right-3 size-8"
-                  onClick={() => setCopied(pinInputCodes)}
-                >
-                  <IconCheck
-                    size={16}
-                    className={cn(
-                      "transition-all",
-                      copied
-                        ? "opacity-100 translate-x-2"
-                        : "opacity-0 translate-x-full"
-                    )}
-                  />
-                  <IconCopy
-                    size={16}
-                    className={cn(
-                      "transition-all",
-                      copied
-                        ? "opacity-0 translate-x-full"
-                        : "opacity-100 -translate-x-2"
-                    )}
-                  />
-                </Button>
-                <div className="bg-slate-900 font-light text-slate-300 p-2 rounded w-full overflow-x-auto h-96 overflow-y-auto text-xs">
-                  <pre>
-                    <code>{pinInputCodes}</code>
-                  </pre>
-                </div>
-              </div>
-            </CollapsibleContent>
-          </Collapsible>
+          <h2 className="font-medium text-lg">Snippets</h2>
+          <div className="mt-2 divide-y">
+            <Accordion type="single" collapsible defaultValue="pin-input-1">
+              <SnippetAccordionItem
+                id="pin-input-1"
+                title="pin-input.tsx"
+                titleDesc="with ShadcnUI installed"
+                snippet={pinInputShadcn}
+              />
+              <SnippetAccordionItem
+                id="pin-input-2"
+                title="pin-input.tsx"
+                titleDesc="without Tailwind or ShadcnUI"
+                snippet={pinInputRaw}
+              />
+            </Accordion>
+          </div>
         </div>
       </section>
     </main>
