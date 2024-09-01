@@ -1,5 +1,4 @@
-const pinInputCodes = `
-import * as React from "react";
+const pinInputCodes = `import * as React from "react";
 import { cn } from "@/lib/utils";
 
 interface PinInputProps {
@@ -380,7 +379,7 @@ const usePinInput = ({
     event.preventDefault();
     const copyValue = event.clipboardData
       .getData("text/plain")
-      .replace(/[\n\r\\s]+/g, "");
+      .replace(/[\\n\\r\\s]+/g, '')
     const copyArr = copyValue.split("").slice(0, length);
 
     const isValid = copyArr.every((c) => validate(c));

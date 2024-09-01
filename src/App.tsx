@@ -1,5 +1,6 @@
 import {
   IconCaretDown,
+  IconCheck,
   IconCopy,
   IconGitFork,
   IconStar,
@@ -13,8 +14,10 @@ import {
 } from "@/components/ui/collapsible";
 import { pinInputCodes } from "./assets/pin-input-codes";
 import { cn } from "./lib/utils";
+import useCopy from "./hooks/use-copy";
 
 export default function App() {
+  const [copied, setCopied] = useCopy();
   return (
     <main className="max-w-3xl mx-auto pt-20 pb-20">
       <div className="space-y-1">
@@ -60,15 +63,6 @@ export default function App() {
           </ul>
         </div>
 
-        {/* Note! */}
-        {/* <div className="bg-card p-4 rounded-md shadow-sm col-span-4 row-span-2 flex flex-col justify-between h-36">
-          <h2 className="font-medium text-lg mb-1">Note!</h2>
-          <p className="text-muted-foreground text-sm italic">
-            You don't need to install component library or any CSS library.
-            However, you can make use of it for the best version available.
-          </p>
-        </div> */}
-
         {/* Snippets */}
         <div className="bg-card p-4 rounded-md shadow-sm col-span-12 row-span-2">
           <h2 className="font-medium text-lg mb-1">Snippets</h2>
@@ -92,11 +86,28 @@ export default function App() {
                   variant="secondary"
                   size="icon"
                   className="absolute top-3 right-3 size-8"
+                  onClick={() => setCopied(pinInputCodes)}
                 >
-                  <IconCopy size={16} />
+                  <IconCheck
+                    size={16}
+                    className={cn(
+                      "transition-all",
+                      copied
+                        ? "opacity-100 translate-x-2"
+                        : "opacity-0 translate-x-full"
+                    )}
+                  />
+                  <IconCopy
+                    size={16}
+                    className={cn(
+                      "transition-all",
+                      copied
+                        ? "opacity-0 translate-x-full"
+                        : "opacity-100 -translate-x-2"
+                    )}
+                  />
                 </Button>
-                {/* bg-foreground/90 */}
-                <div className="bg-slate-900 font-light text-slate-300 p-2 pt-0 rounded w-full overflow-x-auto h-96 overflow-y-auto text-xs">
+                <div className="bg-slate-900 font-light text-slate-300 p-2 rounded w-full overflow-x-auto h-96 overflow-y-auto text-xs">
                   <pre>
                     <code>{pinInputCodes}</code>
                   </pre>
