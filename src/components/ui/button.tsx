@@ -52,12 +52,13 @@ type ButtonProps = ButtonPropsBase &
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className, variant, size, children, ...props }, ref) => {
-    if (props.asChild) {
+    const { asChild, ...rest } = props;
+    if (asChild) {
       return (
         <Slot
           className={cn(buttonVariants({ variant, size, className }))}
           ref={ref}
-          {...props}
+          {...rest}
         >
           {children}
         </Slot>
