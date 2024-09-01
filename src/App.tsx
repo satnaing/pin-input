@@ -18,11 +18,14 @@ import { SocialButton } from "./components/ui/social-button";
 export default function App() {
   return (
     <>
-      <main className="max-w-3xl mx-auto pt-20 pb-10">
+      <main className="max-w-3xl mx-auto px-4 pt-16 sm:pt-20 pb-10">
         <div className="space-y-1">
-          <h1 className="font-bold text-2xl text-center">Pin Input</h1>
-          <p className="text-muted-foreground text-center text-lg leading-tight">
-            A modular, style-agnostic PinInput component for React, <br />
+          <h1 className="font-bold text-xl md:text-2xl text-center">
+            Pin Input
+          </h1>
+          <p className="text-muted-foreground text-center text-base md:text-lg leading-tight">
+            A modular, style-agnostic PinInput component for React,{" "}
+            <br className="hidden sm:block" />
             ready to use with just a copy-paste—no extra libraries needed.
           </p>
         </div>
@@ -34,13 +37,13 @@ export default function App() {
           <ThemeSwitch />
         </div>
 
-        <section className="grid grid-cols-12 grid-rows-6 gap-4 mt-8">
+        <section className="flex flex-col sm:grid grid-cols-12 grid-rows-6 gap-4 mt-8">
           {/* Pin Input */}
-          <div className="bg-card p-4 rounded-md shadow-sm col-span-7 row-span-4 space-y-2">
-            <h2 className="font-medium text-lg mb-1">
+          <div className="bg-card p-4 rounded-md shadow-sm col-span-8 md:col-span-7 row-span-3 md:row-span-4 space-y-2 sm:space-y-1 md:space-y-2">
+            <h2 className="font-medium text-lg md:mb-1">
               Two-factor Authentication
             </h2>
-            <p className="text-muted-foreground">
+            <p className="text-muted-foreground leading-tight md:leading-normal">
               Please enter the authentication code. <br />
               We have sent the authentication code to your email.
             </p>
@@ -48,7 +51,7 @@ export default function App() {
           </div>
 
           {/* Get Started */}
-          <div className="bg-card p-4 rounded-md shadow-sm col-span-5 row-span-3">
+          <div className="bg-card p-4 rounded-md shadow-sm col-span-6 md:col-span-5 row-span-3">
             <h2 className="font-medium text-lg mb-1">Get Started</h2>
             <ol className="list-decimal pl-4 font-light">
               <li>Install shadcn/ui incl. the Input component.</li>
@@ -58,7 +61,7 @@ export default function App() {
           </div>
 
           {/* Features */}
-          <div className="bg-card p-4 rounded-md shadow-sm col-span-5 row-span-3">
+          <div className="bg-card p-4 rounded-md shadow-sm col-span-6 md:col-span-5 row-span-3">
             <h2 className="font-medium text-lg mb-1">Features</h2>
             <ul className="list-disc pl-4 font-light">
               <li>No additional library</li>
@@ -70,7 +73,7 @@ export default function App() {
           </div>
 
           {/* Note */}
-          <div className="bg-card p-4 rounded-md shadow-sm col-span-7 row-span-2">
+          <div className="bg-card p-4 rounded-md shadow-sm col-start-9 sm:row-start-1 md:col-start-1 col-span-4 md:col-span-7 row-span-3 md:row-span-2">
             <h2 className="font-medium text-lg mb-1">Note</h2>
             <p className="text-sm text-muted-foreground">
               You don't need to install component library or any CSS library.
@@ -101,7 +104,7 @@ export default function App() {
         </section>
       </main>
 
-      <footer className="max-w-3xl mx-auto flex flex-col justify-center items-center py-2">
+      <footer className="max-w-3xl mx-auto px-4 flex flex-col justify-center items-center py-2">
         <span>
           Crafted with <IconHeart className="inline-block size-5" /> by Sat
           Naing.

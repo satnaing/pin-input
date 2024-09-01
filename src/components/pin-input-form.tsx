@@ -54,10 +54,10 @@ export function PinInputForm({
                   <FormControl>
                     <PinInput
                       {...field}
-                      className="flex h-14 justify-between"
+                      className="flex h-10 md:h-14 justify-between"
                       onComplete={() => setDisabledBtn(false)}
                       onIncomplete={() => setDisabledBtn(true)}
-                      placeholder="◯"
+                      // placeholder="◯"
                     >
                       {Array.from({ length: 7 }, (_, i) => {
                         if (i === 3)
@@ -67,7 +67,7 @@ export function PinInputForm({
                             key={i}
                             component={Input}
                             className={cn(
-                              "size-14 text-lg",
+                              "size-10 md:size-14 text-base md:text-lg",
                               form.getFieldState("otp").invalid &&
                                 "border-red-500"
                             )}
@@ -82,7 +82,7 @@ export function PinInputForm({
             />
             <Button
               size="lg"
-              className="mt-2 h-10 text-lg py-5"
+              className="mt-2 h-8 md:h-10 md:text-lg md:py-5"
               disabled={disabledBtn}
               loading={isLoading}
             >
