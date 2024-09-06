@@ -60,9 +60,15 @@ export default function App() {
           <div className="bg-card p-4 rounded-md shadow-sm col-span-6 md:col-span-5 row-span-3">
             <h2 className="font-medium text-lg mb-1">Get Started</h2>
             <ol className="list-decimal pl-4 font-light">
-              <li>Install shadcn/ui incl. the Input component.</li>
-              <li>Copy & paste pin-input.tsx</li>
-              <li>Define your config and pass required props</li>
+              <li>
+                <strong>Copy & paste</strong>{" "}
+                <code className="inline-code">pin-input.tsx</code> into your
+                project.
+              </li>
+              <li>
+                <strong>Use the component</strong> as needed, referring to the
+                usage section for guidance.
+              </li>
             </ol>
           </div>
 
@@ -70,11 +76,10 @@ export default function App() {
           <div className="bg-card p-4 rounded-md shadow-sm col-span-6 md:col-span-5 row-span-3">
             <h2 className="font-medium text-lg mb-1">Features</h2>
             <ul className="list-disc pl-4 font-light">
-              <li>No additional library</li>
-              <li>Listens to keydown events</li>
-              <li>Supports arrow navigation</li>
-              <li>Formats date values</li>
-              <li>Optimizes mobile keyboard</li>
+              <li>No additional library required.</li>
+              <li>Supports both controlled and uncontrolled components.</li>
+              <li>Compatible with form libraries.</li>
+              <li>Simple & Accessible</li>
             </ul>
           </div>
 
@@ -82,8 +87,8 @@ export default function App() {
           <div className="bg-card p-4 rounded-md shadow-sm col-start-9 sm:row-start-1 md:col-start-1 col-span-4 md:col-span-7 row-span-3 md:row-span-2">
             <h2 className="font-medium text-lg mb-1">Note</h2>
             <p className="text-sm text-muted-foreground">
-              You don't need to install component library or any CSS library.
-              However, you can make use of it for the best version available.
+              You don't need to install a component or CSS library, but you can
+              use one to enhance and customize the component.
             </p>
           </div>
 

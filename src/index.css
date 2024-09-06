@@ -65,8 +65,13 @@
   body {
     @apply bg-background text-foreground bg-[url("/bg-noise.png")] bg-[length:15%] min-h-svh w-full;
   }
-
   body > #root {
     @apply h-svh;
+  }
+}
+
+@layer utilities {
+  .inline-code {
+    @apply bg-card-foreground/5 text-sm p-1 rounded;
   }
 }
