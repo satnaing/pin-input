@@ -7,7 +7,13 @@ import {
   IconHeart,
   IconStar,
 } from "@tabler/icons-react";
-import { pinInputShadcn, pinInputRaw } from "@/assets/snippets";
+import {
+  pinInputShadcn,
+  pinInputRaw,
+  controlledPinInput,
+  uncontrolledPinInput,
+  reactHookFormPinInput,
+} from "@/assets/snippets";
 import { Button } from "@/components/ui/button";
 import { Accordion } from "@/components/ui/accordion";
 import ThemeSwitch from "@/components/theme-switch";
@@ -97,6 +103,31 @@ export default function App() {
                   title="pin-input.tsx"
                   titleDesc="without Tailwind or ShadcnUI"
                   snippet={pinInputRaw}
+                />
+              </Accordion>
+            </div>
+          </div>
+
+          {/* Usage */}
+          <div className="bg-card p-4 rounded-md shadow-sm col-span-12">
+            <h2 className="font-medium text-lg">Usage</h2>
+            <div className="mt-2 divide-y">
+              <Accordion type="single" collapsible>
+                <SnippetAccordionItem
+                  id="usage-1"
+                  title="Controlled PinInput"
+                  snippet={controlledPinInput}
+                />
+                <SnippetAccordionItem
+                  id="usage-2"
+                  title="Uncontrolled PinInput"
+                  snippet={uncontrolledPinInput}
+                />
+                <SnippetAccordionItem
+                  id="usage-3"
+                  title="Form Library"
+                  titleDesc="React Hook Form with Zod"
+                  snippet={reactHookFormPinInput}
                 />
               </Accordion>
             </div>
