@@ -36,10 +36,18 @@ export default function App() {
           </p>
         </div>
         <div className="space-x-4 mt-4 text-center">
-          <Button variant="outline" leftSection={<IconGitFork size={20} />}>
-            Fork
+          <Button variant="outline" asChild>
+            <a href="https://github.com/satnaing/pin-input/fork">
+              <IconGitFork size={20} className="mr-2" />
+              Fork
+            </a>
           </Button>
-          <Button leftSection={<IconStar size={18} />}>GitHub</Button>
+          <Button asChild>
+            <a href="https://github.com/satnaing/pin-input">
+              <IconStar size={20} className="mr-2" />
+              GitHub
+            </a>
+          </Button>
           <ThemeSwitch />
         </div>
 
