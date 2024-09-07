@@ -1,50 +1,170 @@
-# React + TypeScript + Vite
+# Pin Input (React)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modular, style-agnostic PinInput component for React, ready to use with just a copy-paste—no extra libraries needed.
 
-Currently, two official plugins are available:
+![Pin Input by Sat Naing](public/pin-input-social-card.png)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
 
-## Expanding the ESLint configuration
+- No additional library required.
+- Supports both controlled and uncontrolled components.
+- Compatible with form libraries.
+- Simple & Accessible\_ support copy-paste, mask, auto-focus, onComplete, onIncomplete etc
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Get Started
 
-- Configure the top-level `parserOptions` property like this:
+1. Copy & paste [pin-input.tsx](src/components/ui/pin-input.tsx) into your project.
+2. Use the component as needed, refering to the usage section for guidance.
+3. That's it—enjoy the simplicity!
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+## Note
+
+> You don’t need to install a component or CSS library. However, feel free to use one to enhance and customize the component to your needs.
+
+## Usage
+
+### Controlled PinInput
+
+```tsx
+function ControlledPinInput() {
+  const [pinInput, setPinInput] = useState("");
+
+  return (
+    <PinInput
+      className="flex h-10 space-x-4"
+      value={pinInput}
+      onChange={setPinInput}
+      onComplete={(str) => console.log("completed", str)}
+    >
+      {Array.from({ length: 4 }, (_, i) => (
+        <PinInputField key={i} component={Input} />
+      ))}
+    </PinInput>
+  );
+}
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+### Uncontrolled PinInput
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+```tsx
+function ControlledPinInput() {
+  return (
+    <PinInput
+      className="flex h-10 space-x-4"
+      defaultValue=""
+      onComplete={(str) => console.log("completed", str)}
+      autoFocus
+    >
+      <PinInputField component={Input} />
+      <PinInputField component={Input} />
+      <Separator orientation="vertical" />
+      <PinInputField component={Input} />
+      <PinInputField component={Input} />
+    </PinInput>
+  );
+}
 ```
+
+### React-hook-form with Zod
+
+```tsx
+import { z } from "zod";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { cn } from "@/lib/utils";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormMessage,
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import { Separator } from "@/components/ui/separator";
+import { PinInput, PinInputField } from "@/components/ui/pin-input";
+
+const formSchema = z.object({
+  otp: z.string().min(1, { message: "Please enter your otp code." }),
+});
+
+export default function MyComponent() {
+  const [isLoading, setIsLoading] = useState(false);
+  const [disabledBtn, setDisabledBtn] = useState(true);
+
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
+    defaultValues: { otp: "" },
+  });
+
+  function onSubmit(data: z.infer<typeof formSchema>) {
+    setIsLoading(true);
+    console.log({ data });
+
+    setTimeout(() => {
+      form.reset();
+      setIsLoading(false);
+    }, 2000);
+  }
+
+  return (
+    <Form {...form}>
+      <form onSubmit={form.handleSubmit(onSubmit)}>
+        <div className="grid gap-2">
+          <FormField
+            control={form.control}
+            name="otp"
+            render={({ field }) => (
+              <FormItem className="space-y-1">
+                <FormControl>
+                  <PinInput
+                    {...field}
+                    className="flex h-10 md:h-14 justify-between"
+                    onComplete={() => setDisabledBtn(false)}
+                    onIncomplete={() => setDisabledBtn(true)}
+                    placeholder="◯"
+                  >
+                    {Array.from({ length: 7 }, (_, i) => {
+                      if (i === 3)
+                        return <Separator key={i} orientation="vertical" />;
+                      return (
+                        <PinInputField
+                          key={i}
+                          component={Input}
+                          className={cn(
+                            "size-10 md:size-14 text-base md:text-lg",
+                            form.getFieldState("otp").invalid &&
+                              "border-red-500"
+                          )}
+                        />
+                      );
+                    })}
+                  </PinInput>
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <Button
+            size="lg"
+            className="mt-2 h-8 md:h-10 md:text-lg md:py-5"
+            disabled={disabledBtn}
+            loading={isLoading}
+          >
+            Verify
+          </Button>
+        </div>
+      </form>
+    </Form>
+  );
+}
+```
+
+## Author
+
+Crafted with 🤍 by [Sat Naing](https://satnaing.dev). The design of the website is inspired by [https://time.openstatus.dev](https://time.openstatus.dev)
+
+## License
+
+Licensed under the [MIT License](https://choosealicense.com/licenses/mit/)
