@@ -114,15 +114,18 @@ const PinInput = React.forwardRef<HTMLDivElement, PinInputProps>(
       onChange(pinValue)
     }, [onChange, pinValue])
 
-    /* call onComplete func if pinValue is valid and completed */
+    /* call onComplete/onIncomplete func if pinValue is valid and completed/incompleted */
+    const completeRef = React.useRef(pinValue.length === length);
     React.useEffect(() => {
-      if (onComplete && pinValue.length === length) {
-        onComplete(pinValue)
+      if (pinValue.length === length && completeRef.current === false) {
+        completeRef.current = true;
+        if (onComplete) onComplete(pinValue);
       }
-      if (onIncomplete && pinValue.length !== length) {
-        onIncomplete(pinValue)
+      if (pinValue.length !== length && completeRef.current === true) {
+        completeRef.current = false;
+        if (onIncomplete) onIncomplete(pinValue);
       }
-    }, [length, onComplete, onIncomplete, pinValue])
+    }, [length, onComplete, onIncomplete, pinValue, pins, value]);
 
     /* focus on first input field if autoFocus is set */
     React.useEffect(() => {
@@ -207,7 +210,7 @@ const PinInputFieldNoRef = <T extends React.ElementType = 'input'>(
   {
     className,
     component,
-    fontSize = '2.5rem',
+    fontSize = '1rem',
     ...props
   }: PinInputFieldProps<T> &
     (React.ComponentType<T> extends undefined
