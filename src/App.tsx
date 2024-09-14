@@ -3,6 +3,7 @@ import {
   IconBrandLinkedin,
   IconBrandX,
   IconDeviceLaptop,
+  IconExternalLink,
   IconGitFork,
   IconHeart,
   IconStar,
@@ -144,6 +145,55 @@ export default function App() {
                 />
               </Accordion>
             </div>
+          </div>
+
+          {/* Examples */}
+          <div className="bg-card p-4 rounded-md shadow-sm col-span-12">
+            <h2 className="font-medium text-lg">Examples</h2>
+            <ul className="mt-2 divide-y">
+              <li>
+                <a
+                  href="https://stackblitz.com/edit/pin-input-shadcn-react-hook-form?file=src%2FApp.tsx"
+                  target="_blank"
+                  rel="noopener"
+                  className="flex gap-1 justify-between text-sm sm:text-base sm:w-fit w-full items-center hover:underline decoration-dashed underline-offset-4 py-1"
+                >
+                  <span>PinInput (ShadcnUI + React Hook Form)</span>
+                  <IconExternalLink
+                    size={20}
+                    className="flex-none text-muted-foreground stroke-2"
+                  />
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://stackblitz.com/edit/pin-input-raw?file=src%2FApp.tsx"
+                  target="_blank"
+                  rel="noopener"
+                  className="flex gap-1 justify-between text-sm sm:text-base sm:w-fit w-full items-center hover:underline decoration-dashed underline-offset-4 py-1"
+                >
+                  <span>PinInput Raw (Controlled)</span>
+                  <IconExternalLink
+                    size={20}
+                    className="flex-none text-muted-foreground stroke-2"
+                  />
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://stackblitz.com/edit/pin-input-raw-uncontolled?file=src%2FApp.tsx"
+                  target="_blank"
+                  rel="noopener"
+                  className="flex gap-1 justify-between text-sm sm:text-base sm:w-fit w-full items-center hover:underline decoration-dashed underline-offset-4 py-1"
+                >
+                  <span>PinInput Raw (Uncontrolled)</span>
+                  <IconExternalLink
+                    size={20}
+                    className="flex-none text-muted-foreground stroke-2"
+                  />
+                </a>
+              </li>
+            </ul>
           </div>
         </section>
       </main>

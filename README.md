@@ -161,6 +161,12 @@ export default function MyComponent() {
 }
 ```
 
+## Examples
+
+- [PinInput (ShadcnUI + React Hook Form)](https://stackblitz.com/edit/pin-input-shadcn-react-hook-form?file=src%2FApp.tsx)
+- [PinInput Raw (Controlled)](https://stackblitz.com/edit/pin-input-raw?file=src%2FApp.tsx)
+- [PinInput Raw (Uncontrolled)](https://stackblitz.com/edit/pin-input-raw-uncontolled?file=src%2FApp.tsx)
+
 ## Author
 
 Crafted with 🤍 by [Sat Naing](https://satnaing.dev). The design of the website is inspired by [https://time.openstatus.dev](https://time.openstatus.dev)
