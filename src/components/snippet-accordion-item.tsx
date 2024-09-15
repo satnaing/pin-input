@@ -43,6 +43,9 @@ export default function SnippetAccordionItem({
           className="absolute top-3 right-3 size-8"
           onClick={() => setCopied(snippet)}
         >
+          <span className="sr-only">
+            {copied ? "Code copied" : "Copy code"}
+          </span>
           <IconCheck
             size={16}
             className={cn(
