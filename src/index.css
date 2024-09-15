@@ -63,7 +63,7 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground bg-[url("/bg-noise.png")] bg-[length:15%] min-h-svh w-full;
+    @apply bg-background text-foreground bg-[url("/bg-noise.webp")] bg-[length:15%] min-h-svh w-full;
   }
   body > #root {
     @apply h-svh;
